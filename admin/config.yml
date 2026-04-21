@@ -45,6 +45,8 @@ collections:
         field: { label: "Technology", name: "tech", widget: "string" }
       - { label: "Live URL", name: "live_url", widget: "string", required: false }
       - { label: "GitHub URL", name: "github_url", widget: "string", required: false }
+      - { label: "Google Drive URL", name: "google_drive_url", widget: "string", required: false, hint: "Direct link to a Google Drive folder or document" }
+      - { label: "Resume / Direct Document", name: "resume_file", widget: "file", required: false, hint: "Upload a PDF resume or standalone document directly" }
       - label: "Downloadable Files"
         name: "files"
         widget: "list"

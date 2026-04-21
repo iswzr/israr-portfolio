@@ -120,8 +120,12 @@ function renderModal(meta, body) {
         .map(f => `<a class="modal-file-link" href="${f.path}" download>📎 ${f.label}</a>`).join('');
     const liveLink = meta.live_url
         ? `<a class="btn-primary" href="${meta.live_url}" target="_blank">🌐 View Live</a>` : '';
+    const resumeLink = meta.resume_file
+        ? `<a class="btn-primary" href="${meta.resume_file}" target="_blank" download>📄 View Resume</a>` : '';
     const ghLink = meta.github_url
         ? `<a class="btn-ghost" href="${meta.github_url}" target="_blank">GitHub ↗</a>` : '';
+    const driveLink = meta.google_drive_url
+        ? `<a class="btn-ghost" href="${meta.google_drive_url}" target="_blank">📁 Google Drive ↗</a>` : '';
 
     return `
     ${gallery ? `<div class="modal-gallery">${gallery}</div>` : ''}
@@ -136,7 +140,7 @@ function renderModal(meta, body) {
     ${body ? `<div class="modal-desc" style="white-space:pre-line;margin-top:0">${body}</div>` : ''}
     ${stack ? `<div class="modal-sec">Tech Stack</div><div class="modal-stack">${stack}</div>` : ''}
     ${files ? `<div class="modal-sec">Downloads</div><div class="modal-files">${files}</div>` : ''}
-    <div class="modal-links">${liveLink}${ghLink}</div>`;
+    <div class="modal-links">${liveLink}${resumeLink}${ghLink}${driveLink}</div>`;
 }
 
 /* ── LOAD ── */
