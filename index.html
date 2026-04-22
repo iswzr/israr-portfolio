@@ -7,16 +7,22 @@
     <title>Israr Ahmad — BI Developer & SaaS Founder</title>
     <meta name="description"
         content="Business Intelligence Developer & SaaS Founder. Power BI, DAX, MERN Stack. Based in Rawalpindi, Pakistan." />
+    <meta property="og:title" content="Israr Ahmad — BI Developer & SaaS Founder" />
+    <meta property="og:description" content="Power BI · DAX · MERN Stack · ClinicOS · Pakistan" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,600;12..96,700;12..96,800&family=JetBrains+Mono:wght@300;400;500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=JetBrains+Mono:wght@300;400;500&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/main.css" />
-
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 
 <body>
+
+    <!-- AMBIENT ORBS -->
+    <div class="orb-ambient orb-ambient-1" aria-hidden="true"></div>
+    <div class="orb-ambient orb-ambient-2" aria-hidden="true"></div>
+    <div class="orb-ambient orb-ambient-3" aria-hidden="true"></div>
 
     <!-- CURSOR -->
     <div class="cursor" id="cursor"></div>
@@ -26,18 +32,18 @@
     <nav id="navbar">
         <a href="#hero" class="nav-logo">IW<span class="logo-dot">.</span></a>
         <ul class="nav-links">
-            <li><a href="#about" data-text="About">About</a></li>
-            <li><a href="#skills" data-text="Skills">Skills</a></li>
-            <li><a href="#projects" data-text="Projects">Projects</a></li>
-            <li><a href="#experience" data-text="Experience">Experience</a></li>
-            <li><a href="#certifications" data-text="Certs">Certs</a></li>
-            <li><a href="#contact" data-text="Contact">Contact</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#certifications">Certs</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
         <div class="nav-right">
             <span class="nav-status"><span class="status-dot"></span>Available</span>
             <a href="mailto:israrwaser@gmail.com" class="nav-cta">Hire Me →</a>
         </div>
-        <button class="nav-burger" id="burger">
+        <button class="nav-burger" id="burger" aria-label="Open menu">
             <span></span><span></span><span></span>
         </button>
     </nav>
@@ -51,24 +57,39 @@
         <a href="#contact" onclick="closeMobile()">Contact</a>
     </div>
 
-    <!-- HERO -->
+    <!-- ═══════════════ HERO ═══════════════ -->
     <section id="hero">
-        <canvas id="heroCanvas"></canvas>
+        <canvas id="heroCanvas" aria-hidden="true"></canvas>
+        <div class="orb orb-blue" aria-hidden="true"></div>
+        <div class="orb orb-purple" aria-hidden="true"></div>
+
         <div class="hero-inner">
             <div class="hero-left">
+
                 <div class="hero-eyebrow">
                     <span class="eyebrow-line"></span>
                     <span class="mono">BI Developer · SaaS Founder · Data Analyst</span>
                 </div>
+
                 <h1 class="hero-heading">
-                    <span class="hero-line" data-delay="0">Israr</span>
-                    <span class="hero-line accent-line" data-delay="1">Ahmad</span>
+                    <div class="hero-line hero-name-first">
+                        <span class="char" style="--i:1">I</span><span class="char" style="--i:2">s</span><span
+                            class="char" style="--i:3">r</span><span class="char" style="--i:4">a</span><span
+                            class="char" style="--i:5">r</span>
+                    </div>
+                    <div class="hero-line hero-name-last">
+                        <span class="char" style="--i:6">A</span><span class="char" style="--i:7">h</span><span
+                            class="char" style="--i:8">m</span><span class="char" style="--i:9">a</span><span
+                            class="char" style="--i:10">d</span>
+                    </div>
                 </h1>
+
                 <p class="hero-sub">
                     Building data systems that drive decisions — and products that solve real problems.
                     <span class="accent-text">2+ years in BI</span>, 1,200+ DAX measures shipped, and a
                     <span class="accent-text">live SaaS</span> serving Pakistani healthcare.
                 </p>
+
                 <div class="hero-pills">
                     <span class="pill pill-accent">Power BI</span>
                     <span class="pill pill-accent">DAX</span>
@@ -79,16 +100,17 @@
                     <span class="pill">Node.js</span>
                     <span class="pill">MongoDB</span>
                 </div>
+
                 <div class="hero-ctas">
                     <a href="#projects" class="btn-primary"><span>View Work</span></a>
                     <a href="#contact" class="btn-ghost">Let's Talk →</a>
                 </div>
-            </div>
+
+            </div><!-- hero-left -->
 
             <div class="hero-right">
-                <div class="hero-card-3d" id="heroCard">
+                <div class="bento-panel" id="heroCard">
                     <div class="hcard-inner">
-                        <div class="hcard-glow"></div>
                         <div class="hcard-top">
                             <div class="hcard-avatar">IA</div>
                             <div>
@@ -124,8 +146,9 @@
                         <div class="hcard-location mono">📍 Rawalpindi, Pakistan</div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div><!-- hero-right -->
+
+        </div><!-- hero-inner -->
 
         <div class="hero-scroll-hint">
             <span class="mono">scroll</span>
@@ -133,11 +156,11 @@
         </div>
     </section>
 
-    <!-- ABOUT -->
+    <!-- ═══════════════ ABOUT ═══════════════ -->
     <section id="about" class="section-reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-eyebrow mono">01 / About</div>
+                <div class="section-eyebrow">01 / About</div>
                 <h2 class="section-title">Data meets<br><em>product thinking</em></h2>
             </div>
             <div class="about-grid">
@@ -155,154 +178,220 @@
                     <div class="about-links">
                         <a href="https://clinicos.com.pk" target="_blank" class="about-link">ClinicOS ↗</a>
                         <a href="https://mavenshowcase.com/profile/286113d0-a001-70aa-ead5-4775cbc2a39f" target="_blank"
-                            class="about-link">Maven Portfolio ↗</a>
+                            class="about-link">Maven ↗</a>
                         <a href="https://linkedin.com/in/iswxr" target="_blank" class="about-link">LinkedIn ↗</a>
+                        <a href="https://github.com/iswzr" target="_blank" class="about-link">GitHub ↗</a>
                     </div>
                 </div>
+
                 <div class="about-cards reveal-right">
-                    <div class="acard" data-tilt>
+                    <div class="acard glass-card" data-tilt>
                         <div class="acard-icon">📊</div>
-                        <div class="acard-title">Business Intelligence</div>
-                        <div class="acard-desc">Power BI · DAX · Power Query · KPI Frameworks · ETL Pipelines</div>
+                        <div>
+                            <div class="acard-title">Business Intelligence</div>
+                            <div class="acard-desc">Power BI · DAX · Power Query · KPI Frameworks · ETL Pipelines</div>
+                        </div>
                     </div>
-                    <div class="acard" data-tilt>
+                    <div class="acard glass-card" data-tilt>
                         <div class="acard-icon">🏥</div>
-                        <div class="acard-title">ClinicOS — Founder</div>
-                        <div class="acard-desc">Live SaaS · Multi-tenant · MERN · Real-time · clinicos.com.pk</div>
+                        <div>
+                            <div class="acard-title">ClinicOS — Founder</div>
+                            <div class="acard-desc">Live SaaS · Multi-tenant · MERN · Real-time · clinicos.com.pk</div>
+                        </div>
                     </div>
-                    <div class="acard" data-tilt>
+                    <div class="acard glass-card" data-tilt>
                         <div class="acard-icon">💼</div>
-                        <div class="acard-title">Freelance / Upwork</div>
-                        <div class="acard-desc">Power BI dashboards · MERN SaaS · Dollar-denominated</div>
+                        <div>
+                            <div class="acard-title">Freelance / Upwork</div>
+                            <div class="acard-desc">Power BI dashboards · MERN SaaS · Dollar-denominated</div>
+                        </div>
                     </div>
-                    <div class="acard" data-tilt>
+                    <div class="acard glass-card" data-tilt>
                         <div class="acard-icon">🎓</div>
-                        <div class="acard-title">Research Scholarship</div>
-                        <div class="acard-desc">Health Informatics · Australia & Europe · In progress</div>
+                        <div>
+                            <div class="acard-title">Research Scholarship</div>
+                            <div class="acard-desc">Health Informatics · Australia & Europe · In progress</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SKILLS -->
+    <!-- ═══════════════ SKILLS ═══════════════ -->
     <section id="skills" class="section-dark section-reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-eyebrow mono">02 / Skills</div>
+                <div class="section-eyebrow">02 / Skills</div>
                 <h2 class="section-title">What I work with</h2>
                 <p class="section-sub">A full-stack toolkit spanning BI, data engineering, and modern web development.
                 </p>
             </div>
             <div class="skills-grid">
-                <div class="skill-card reveal-up" data-tilt>
-                    <div class="sc-icon">📊</div>
-                    <div class="sc-name">Power BI</div>
-                    <div class="sc-desc">DAX, Data Modeling, Power Query, ETL, Report Optimization</div>
-                    <div class="sc-bar">
-                        <div class="sc-fill" data-w="95"></div>
+
+                <div class="skill-card glass-card reveal-up" data-tilt>
+                    <div class="sc-top">
+                        <div class="sc-icon">📊</div>
+                        <div class="sc-name">Power BI</div>
+                        <div class="sc-desc">DAX, Data Modeling, Power Query, ETL, Report Optimization</div>
                     </div>
-                    <div class="sc-pct mono">95%</div>
-                </div>
-                <div class="skill-card reveal-up" data-tilt>
-                    <div class="sc-icon">⚡</div>
-                    <div class="sc-name">DAX</div>
-                    <div class="sc-desc">1,200+ measures built · Time intelligence · Iterators · Semantic models</div>
-                    <div class="sc-bar">
-                        <div class="sc-fill" data-w="92"></div>
+                    <div class="sc-bottom">
+                        <div class="sc-bar">
+                            <div class="sc-fill" data-w="95"></div>
+                        </div>
+                        <span class="sc-pct">95%</span>
                     </div>
-                    <div class="sc-pct mono">92%</div>
                 </div>
-                <div class="skill-card reveal-up" data-tilt>
-                    <div class="sc-icon">🔧</div>
-                    <div class="sc-name">Power Query / M</div>
-                    <div class="sc-desc">ETL pipelines · Data cleaning · 99% accuracy · Automation</div>
-                    <div class="sc-bar">
-                        <div class="sc-fill" data-w="88"></div>
+
+                <div class="skill-card glass-card reveal-up" data-tilt>
+                    <div class="sc-top">
+                        <div class="sc-icon">⚡</div>
+                        <div class="sc-name">DAX</div>
+                        <div class="sc-desc">1,200+ measures · Time intelligence · Iterators · Semantic models</div>
                     </div>
-                    <div class="sc-pct mono">88%</div>
-                </div>
-                <div class="skill-card reveal-up" data-tilt>
-                    <div class="sc-icon">🗄️</div>
-                    <div class="sc-name">SQL</div>
-                    <div class="sc-desc">PostgreSQL · MySQL · Complex joins · Aggregations · Optimization</div>
-                    <div class="sc-bar">
-                        <div class="sc-fill" data-w="85"></div>
+                    <div class="sc-bottom">
+                        <div class="sc-bar">
+                            <div class="sc-fill" data-w="92"></div>
+                        </div>
+                        <span class="sc-pct">92%</span>
                     </div>
-                    <div class="sc-pct mono">85%</div>
                 </div>
-                <div class="skill-card reveal-up" data-tilt>
-                    <div class="sc-icon">🐍</div>
-                    <div class="sc-name">Python</div>
-                    <div class="sc-desc">Pandas · NumPy · Automation · Supply chain analytics</div>
-                    <div class="sc-bar">
-                        <div class="sc-fill" data-w="72"></div>
+
+                <div class="skill-card glass-card reveal-up" data-tilt>
+                    <div class="sc-top">
+                        <div class="sc-icon">🔧</div>
+                        <div class="sc-name">Power Query / M</div>
+                        <div class="sc-desc">ETL pipelines · Data cleaning · 99% accuracy · Automation</div>
                     </div>
-                    <div class="sc-pct mono">72%</div>
-                </div>
-                <div class="skill-card reveal-up" data-tilt>
-                    <div class="sc-icon">⚛️</div>
-                    <div class="sc-name">React.js</div>
-                    <div class="sc-desc">Component architecture · Hooks · Context · Real-time UI</div>
-                    <div class="sc-bar">
-                        <div class="sc-fill" data-w="80"></div>
+                    <div class="sc-bottom">
+                        <div class="sc-bar">
+                            <div class="sc-fill" data-w="88"></div>
+                        </div>
+                        <span class="sc-pct">88%</span>
                     </div>
-                    <div class="sc-pct mono">80%</div>
                 </div>
-                <div class="skill-card reveal-up" data-tilt>
-                    <div class="sc-icon">🟢</div>
-                    <div class="sc-name">Node.js / Express</div>
-                    <div class="sc-desc">REST APIs · JWT · Multi-tenant middleware · Socket.io</div>
-                    <div class="sc-bar">
-                        <div class="sc-fill" data-w="82"></div>
+
+                <div class="skill-card glass-card reveal-up" data-tilt>
+                    <div class="sc-top">
+                        <div class="sc-icon">🗄️</div>
+                        <div class="sc-name">SQL</div>
+                        <div class="sc-desc">PostgreSQL · MySQL · Joins · Aggregations · Optimization</div>
                     </div>
-                    <div class="sc-pct mono">82%</div>
-                </div>
-                <div class="skill-card reveal-up" data-tilt>
-                    <div class="sc-icon">🍃</div>
-                    <div class="sc-name">MongoDB</div>
-                    <div class="sc-desc">Schema design · Aggregations · Multi-tenancy · Atlas</div>
-                    <div class="sc-bar">
-                        <div class="sc-fill" data-w="78"></div>
+                    <div class="sc-bottom">
+                        <div class="sc-bar">
+                            <div class="sc-fill" data-w="85"></div>
+                        </div>
+                        <span class="sc-pct">85%</span>
                     </div>
-                    <div class="sc-pct mono">78%</div>
                 </div>
-                <div class="skill-card reveal-up" data-tilt>
-                    <div class="sc-icon">📈</div>
-                    <div class="sc-name">Excel</div>
-                    <div class="sc-desc">Power Pivot · Macros · Advanced formulas · Pivot tables</div>
-                    <div class="sc-bar">
-                        <div class="sc-fill" data-w="90"></div>
+
+                <div class="skill-card glass-card reveal-up" data-tilt>
+                    <div class="sc-top">
+                        <div class="sc-icon">🐍</div>
+                        <div class="sc-name">Python</div>
+                        <div class="sc-desc">Pandas · NumPy · Automation · Supply chain analytics</div>
                     </div>
-                    <div class="sc-pct mono">90%</div>
-                </div>
-                <div class="skill-card reveal-up" data-tilt>
-                    <div class="sc-icon">📉</div>
-                    <div class="sc-name">Tableau</div>
-                    <div class="sc-desc">Interactive dashboards · Storytelling · Sentiment analysis</div>
-                    <div class="sc-bar">
-                        <div class="sc-fill" data-w="65"></div>
+                    <div class="sc-bottom">
+                        <div class="sc-bar">
+                            <div class="sc-fill" data-w="72"></div>
+                        </div>
+                        <span class="sc-pct">72%</span>
                     </div>
-                    <div class="sc-pct mono">65%</div>
                 </div>
-                <div class="skill-card reveal-up" data-tilt>
-                    <div class="sc-icon">☁️</div>
-                    <div class="sc-name">Cloud & DevOps</div>
-                    <div class="sc-desc">Railway · Vercel · Cloudflare · MongoDB Atlas · GitHub</div>
-                    <div class="sc-bar">
-                        <div class="sc-fill" data-w="70"></div>
+
+                <div class="skill-card glass-card reveal-up" data-tilt>
+                    <div class="sc-top">
+                        <div class="sc-icon">⚛️</div>
+                        <div class="sc-name">React.js</div>
+                        <div class="sc-desc">Component architecture · Hooks · Context · Real-time UI</div>
                     </div>
-                    <div class="sc-pct mono">70%</div>
+                    <div class="sc-bottom">
+                        <div class="sc-bar">
+                            <div class="sc-fill" data-w="80"></div>
+                        </div>
+                        <span class="sc-pct">80%</span>
+                    </div>
                 </div>
+
+                <div class="skill-card glass-card reveal-up" data-tilt>
+                    <div class="sc-top">
+                        <div class="sc-icon">🟢</div>
+                        <div class="sc-name">Node.js / Express</div>
+                        <div class="sc-desc">REST APIs · JWT · Multi-tenant middleware · Socket.io</div>
+                    </div>
+                    <div class="sc-bottom">
+                        <div class="sc-bar">
+                            <div class="sc-fill" data-w="82"></div>
+                        </div>
+                        <span class="sc-pct">82%</span>
+                    </div>
+                </div>
+
+                <div class="skill-card glass-card reveal-up" data-tilt>
+                    <div class="sc-top">
+                        <div class="sc-icon">🍃</div>
+                        <div class="sc-name">MongoDB</div>
+                        <div class="sc-desc">Schema design · Aggregations · Multi-tenancy · Atlas</div>
+                    </div>
+                    <div class="sc-bottom">
+                        <div class="sc-bar">
+                            <div class="sc-fill" data-w="78"></div>
+                        </div>
+                        <span class="sc-pct">78%</span>
+                    </div>
+                </div>
+
+                <div class="skill-card glass-card reveal-up" data-tilt>
+                    <div class="sc-top">
+                        <div class="sc-icon">📈</div>
+                        <div class="sc-name">Excel</div>
+                        <div class="sc-desc">Power Pivot · Macros · Advanced formulas · Pivot tables</div>
+                    </div>
+                    <div class="sc-bottom">
+                        <div class="sc-bar">
+                            <div class="sc-fill" data-w="90"></div>
+                        </div>
+                        <span class="sc-pct">90%</span>
+                    </div>
+                </div>
+
+                <div class="skill-card glass-card reveal-up" data-tilt>
+                    <div class="sc-top">
+                        <div class="sc-icon">📉</div>
+                        <div class="sc-name">Tableau</div>
+                        <div class="sc-desc">Interactive dashboards · Storytelling · Sentiment analysis</div>
+                    </div>
+                    <div class="sc-bottom">
+                        <div class="sc-bar">
+                            <div class="sc-fill" data-w="65"></div>
+                        </div>
+                        <span class="sc-pct">65%</span>
+                    </div>
+                </div>
+
+                <div class="skill-card glass-card reveal-up" data-tilt>
+                    <div class="sc-top">
+                        <div class="sc-icon">☁️</div>
+                        <div class="sc-name">Cloud & DevOps</div>
+                        <div class="sc-desc">Railway · Vercel · Cloudflare · MongoDB Atlas · GitHub</div>
+                    </div>
+                    <div class="sc-bottom">
+                        <div class="sc-bar">
+                            <div class="sc-fill" data-w="70"></div>
+                        </div>
+                        <span class="sc-pct">70%</span>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <!-- PROJECTS -->
+    <!-- ═══════════════ PROJECTS ═══════════════ -->
     <section id="projects" class="section-reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-eyebrow mono">03 / Projects</div>
+                <div class="section-eyebrow">03 / Projects</div>
                 <h2 class="section-title">Featured Work</h2>
                 <p class="section-sub">From a live SaaS product to production Power BI dashboards — click any card to
                     expand.</p>
@@ -315,16 +404,16 @@
                 <button class="filter-btn" data-filter="excel">Excel</button>
             </div>
             <div class="projects-grid" id="projectsGrid">
-                <div class="projects-loading mono">Loading projects...</div>
+                <div class="projects-loading mono">Loading projects…</div>
             </div>
         </div>
     </section>
 
-    <!-- EXPERIENCE -->
+    <!-- ═══════════════ EXPERIENCE ═══════════════ -->
     <section id="experience" class="section-dark section-reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-eyebrow mono">04 / Experience</div>
+                <div class="section-eyebrow">04 / Experience</div>
                 <h2 class="section-title">Where I've worked</h2>
             </div>
             <div class="timeline">
@@ -334,13 +423,12 @@
                         <div class="tl-period mono">Mar 2025 — Present</div>
                         <div class="tl-dot active"></div>
                     </div>
-                    <div class="tl-right">
+                    <div class="tl-right glass-card">
                         <div class="tl-company">Pentagon Foods</div>
                         <div class="tl-role">Business Intelligence Developer</div>
                         <ul class="tl-points">
                             <li>Architected enterprise Power BI dashboards with a centralized semantic model —
-                                <strong>100+ tables, 100+ relationships, 1,200+ DAX measures</strong>
-                            </li>
+                                <strong>100+ tables, 100+ relationships, 1,200+ DAX measures</strong></li>
                             <li>Reduced report load times significantly through query optimization and incremental
                                 refresh strategies</li>
                             <li>Automated recurring reporting workflows, cutting manual effort by <strong>70%</strong>
@@ -362,7 +450,7 @@
                         <div class="tl-period mono">Dec 2023 — Nov 2024</div>
                         <div class="tl-dot"></div>
                     </div>
-                    <div class="tl-right">
+                    <div class="tl-right glass-card">
                         <div class="tl-company">Omni Security Inc <span class="tl-loc">— Karachi</span></div>
                         <div class="tl-role">Power BI Data Analyst</div>
                         <ul class="tl-points">
@@ -386,7 +474,7 @@
                         <div class="tl-period mono">Early 2025 — Present</div>
                         <div class="tl-dot"></div>
                     </div>
-                    <div class="tl-right">
+                    <div class="tl-right glass-card">
                         <div class="tl-company">ClinicOS <span class="tl-badge-live">Live</span></div>
                         <div class="tl-role">Solo Founder & Full-Stack Developer</div>
                         <ul class="tl-points">
@@ -408,26 +496,26 @@
         </div>
     </section>
 
-    <!-- CERTIFICATIONS -->
+    <!-- ═══════════════ CERTIFICATIONS ═══════════════ -->
     <section id="certifications" class="section-reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-eyebrow mono">05 / Credentials</div>
+                <div class="section-eyebrow">05 / Credentials</div>
                 <h2 class="section-title">Certifications</h2>
                 <p class="section-sub">Verified credentials from Microsoft, Google, and Rutgers University via Coursera.
                 </p>
             </div>
 
-            <div class="section-eyebrow mono" style="margin-bottom:1rem">Specializations</div>
-            <div class="certs-grid" style="margin-bottom:2.5rem">
-                <div class="cert-card reveal-up" data-tilt>
+            <div class="section-eyebrow" style="margin-bottom:1rem">Specializations</div>
+            <div class="certs-grid" style="margin-bottom:2rem">
+                <div class="cert-card glass-card reveal-up" data-tilt>
                     <div class="cert-badge pbi">MS</div>
                     <div>
                         <div class="cert-name">Microsoft Power BI Data Analyst</div>
                         <div class="cert-issuer">Microsoft · Coursera Specialization</div>
                     </div>
                 </div>
-                <div class="cert-card reveal-up" data-tilt>
+                <div class="cert-card glass-card reveal-up" data-tilt>
                     <div class="cert-badge google">G</div>
                     <div>
                         <div class="cert-name">Google Data Analytics</div>
@@ -436,81 +524,81 @@
                 </div>
             </div>
 
-            <div class="section-eyebrow mono" style="margin-bottom:1rem">Individual Courses</div>
+            <div class="section-eyebrow" style="margin-bottom:1rem">Individual Courses</div>
             <div class="certs-grid">
-                <div class="cert-card reveal-up" data-tilt>
+                <div class="cert-card glass-card reveal-up" data-tilt>
                     <div class="cert-badge" style="font-size:0.6rem">86%</div>
                     <div>
                         <div class="cert-name">PL-300 Exam Preparation & Practice</div>
                         <div class="cert-issuer">Microsoft · Grade: 86%</div>
                     </div>
                 </div>
-                <div class="cert-card reveal-up" data-tilt>
+                <div class="cert-card glass-card reveal-up" data-tilt>
                     <div class="cert-badge pbi" style="font-size:0.6rem">87%</div>
                     <div>
                         <div class="cert-name">Harnessing the Power of Data with Power BI</div>
                         <div class="cert-issuer">Microsoft · Grade: 86.66%</div>
                     </div>
                 </div>
-                <div class="cert-card reveal-up" data-tilt>
+                <div class="cert-card glass-card reveal-up" data-tilt>
                     <div class="cert-badge dm" style="font-size:0.6rem">90%</div>
                     <div>
                         <div class="cert-name">Data Modeling in Power BI</div>
                         <div class="cert-issuer">Microsoft · Grade: 90%</div>
                     </div>
                 </div>
-                <div class="cert-card reveal-up" data-tilt>
+                <div class="cert-card glass-card reveal-up" data-tilt>
                     <div class="cert-badge sc" style="font-size:0.6rem">96%</div>
                     <div>
                         <div class="cert-name">Supply Chain Analytics Essentials</div>
                         <div class="cert-issuer">Rutgers University · Grade: 96.40%</div>
                     </div>
                 </div>
-                <div class="cert-card reveal-up" data-tilt>
+                <div class="cert-card glass-card reveal-up" data-tilt>
                     <div class="cert-badge pbi" style="font-size:0.6rem">85%</div>
                     <div>
                         <div class="cert-name">Creative Designing in Power BI</div>
                         <div class="cert-issuer">Microsoft · Grade: 84.66%</div>
                     </div>
                 </div>
-                <div class="cert-card reveal-up" data-tilt>
+                <div class="cert-card glass-card reveal-up" data-tilt>
                     <div class="cert-badge dm" style="font-size:0.6rem">90%</div>
                     <div>
                         <div class="cert-name">Data Analysis & Visualization with Power BI</div>
                         <div class="cert-issuer">Microsoft · Grade: 89.62%</div>
                     </div>
                 </div>
-                <div class="cert-card reveal-up" data-tilt>
+                <div class="cert-card glass-card reveal-up" data-tilt>
                     <div class="cert-badge"
-                        style="font-size:0.6rem;background:rgba(124,58,237,0.08);border-color:rgba(124,58,237,0.2);color:#7c3aed">
+                        style="font-size:0.6rem;background:rgba(167,139,250,0.08);border-color:rgba(167,139,250,0.25);color:#a78bfa">
                         100%</div>
                     <div>
                         <div class="cert-name">Intro to Probability</div>
                         <div class="cert-issuer">University of Zurich · Grade: 100%</div>
                     </div>
                 </div>
-                <div class="cert-card reveal-up" data-tilt>
+                <div class="cert-card glass-card reveal-up" data-tilt>
                     <div class="cert-badge edu" style="font-size:0.6rem">91%</div>
                     <div>
                         <div class="cert-name">Preparing Data for Analysis with Excel</div>
                         <div class="cert-issuer">Microsoft · Grade: 90.66%</div>
                     </div>
                 </div>
-                <div class="cert-card reveal-up" data-tilt>
+                <div class="cert-card glass-card reveal-up" data-tilt>
                     <div class="cert-badge pbi" style="font-size:0.6rem">90%</div>
                     <div>
                         <div class="cert-name">Extract, Transform & Load Data in Power BI</div>
                         <div class="cert-issuer">Microsoft · Grade: 89.83%</div>
                     </div>
                 </div>
-                <div class="cert-card reveal-up" data-tilt>
+                <div class="cert-card glass-card reveal-up" data-tilt>
                     <div class="cert-badge dm" style="font-size:0.6rem">93%</div>
                     <div>
                         <div class="cert-name">Deploy & Maintain Power BI Assets</div>
                         <div class="cert-issuer">Microsoft · Grade: 93%</div>
                     </div>
                 </div>
-                <div class="cert-card reveal-up" data-tilt>
+                <div class="cert-card glass-card reveal-up" data-tilt>
                     <div class="cert-badge edu">BS</div>
                     <div>
                         <div class="cert-name">BS Economics — GPA 3.08 / 4.00</div>
@@ -521,17 +609,17 @@
         </div>
     </section>
 
-    <!-- SERVICES -->
+    <!-- ═══════════════ SERVICES ═══════════════ -->
     <section id="services" class="section-dark section-reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-eyebrow mono">06 / Services</div>
+                <div class="section-eyebrow">06 / Services</div>
                 <h2 class="section-title">What I offer</h2>
                 <p class="section-sub">Available for freelance contracts via Upwork — dollar-denominated engagements.
                 </p>
             </div>
             <div class="services-grid">
-                <div class="svc-card reveal-up" data-tilt>
+                <div class="svc-card glass-card reveal-up" data-tilt>
                     <div class="svc-num mono">01</div>
                     <div class="svc-icon">📊</div>
                     <div class="svc-title">Power BI Dashboards</div>
@@ -539,7 +627,7 @@
                         ETL, and polished interactive reports. Enterprise-grade semantic models.</div>
                     <div class="svc-arrow">→</div>
                 </div>
-                <div class="svc-card reveal-up" data-tilt>
+                <div class="svc-card glass-card reveal-up" data-tilt>
                     <div class="svc-num mono">02</div>
                     <div class="svc-icon">🛠️</div>
                     <div class="svc-title">MERN SaaS Development</div>
@@ -547,7 +635,7 @@
                         Multi-tenant architecture, authentication, real-time features.</div>
                     <div class="svc-arrow">→</div>
                 </div>
-                <div class="svc-card reveal-up" data-tilt>
+                <div class="svc-card glass-card reveal-up" data-tilt>
                     <div class="svc-num mono">03</div>
                     <div class="svc-icon">🔍</div>
                     <div class="svc-title">Data Analysis & Reporting</div>
@@ -559,11 +647,11 @@
         </div>
     </section>
 
-    <!-- CONTACT -->
+    <!-- ═══════════════ CONTACT ═══════════════ -->
     <section id="contact" class="section-reveal">
         <div class="container">
             <div class="section-header">
-                <div class="section-eyebrow mono">07 / Contact</div>
+                <div class="section-eyebrow">07 / Contact</div>
                 <h2 class="section-title">Let's build<br><em>something great</em></h2>
                 <p class="section-sub">Open to freelance projects, full-time BI/data roles, and research collaboration.
                     Based in Rawalpindi — working globally.</p>
@@ -578,7 +666,7 @@
                         </div>
                         <span class="clink-arrow">↗</span>
                     </a>
-                    <a href="mailto:israrw.ahmad@clinicos.com.pk" class="clink reveal-up">
+                    <a href="mailto:israr.ahmad@clinicos.com.pk" class="clink reveal-up">
                         <div class="clink-icon">🏥</div>
                         <div>
                             <div class="clink-label mono">Work Email</div>
@@ -620,10 +708,11 @@
                         <span class="clink-arrow">↗</span>
                     </a>
                 </div>
+
                 <div class="contact-availability reveal-right">
                     <div class="avail-card" data-tilt>
                         <div class="avail-top">
-                            <div class="avail-dot-wrap"><span class="avail-dot"></span></div>
+                            <span class="avail-dot"></span>
                             <div class="avail-status">Currently Available</div>
                         </div>
                         <div class="avail-desc">Open to freelance, part-time data contracts, and full-time BI/developer
@@ -638,10 +727,10 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
+    <!-- ═══════════════ FOOTER ═══════════════ -->
     <footer>
-        <div class="footer-inner container">
-            <div class="footer-left">
+        <div class="footer-inner">
+            <div>
                 <div class="footer-logo">IW<span class="logo-dot">.</span></div>
                 <div class="footer-copy mono">© 2026 Israr Ahmad · BI Developer & SaaS Founder</div>
             </div>
@@ -665,17 +754,6 @@
     <script src="/assets/js/projects.js"></script>
     <script src="/assets/js/main.js"></script>
 
-    <script>
-        if (window.netlifyIdentity) {
-            window.netlifyIdentity.on("init", user => {
-                if (!user) {
-                    window.netlifyIdentity.on("login", () => {
-                        document.location.href = "/admin/";
-                    });
-                }
-            });
-        }
-    </script>
 </body>
 
 </html>

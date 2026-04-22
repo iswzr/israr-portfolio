@@ -1,77 +1,25 @@
-/* ═══════════════════════════════════════════
-   projects.js — fixed front-matter parser
-═══════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════
+   projects.js — Sanity API Integration  (Obsidian v5)
+═══════════════════════════════════════════════════════ */
 
-function parseFrontMatter(raw) {
-    const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---/);
-    if (!match) return { meta: {}, body: raw.trim() };
+const PROJECT_ID = 'kjynuziu';
+const DATASET = 'production';
 
-    const meta = {};
-    const lines = match[1].split(/\r?\n/);
-    let i = 0;
+const QUERY = encodeURIComponent(`*[_type == "project"] | order(featured desc, order asc) {
+  title, tagline, category, status, featured,
+  "cover": cover.asset->url,
+  "resume_file": resume_file.asset->url,
+  live_url, github_url, google_drive_url,
+  "bodyText": pt::text(body)
+}`);
 
-    while (i < lines.length) {
-        const line = lines[i];
+const SANITY_URL = `https://${PROJECT_ID}.api.sanity.io/v2022-03-07/data/query/${DATASET}?query=${QUERY}`;
 
-        // skip blank lines
-        if (!line.trim()) { i++; continue; }
-
-        // top-level key: value
-        const topMatch = line.match(/^([a-zA-Z_]\w*):\s*(.*)/);
-        if (!topMatch) { i++; continue; }
-
-        const key = topMatch[1];
-        const val = topMatch[2].trim();
-
-        if (val === '' || val === '[]') {
-            // could be a list
-            const items = [];
-            i++;
-            while (i < lines.length) {
-                const nextLine = lines[i];
-                if (!nextLine.match(/^\s+-/)) break;
-
-                const itemVal = nextLine.replace(/^\s+-\s*/, '').trim();
-
-                // check if it's a sub-object (next lines are indented key: value)
-                if (itemVal === '') {
-                    // sub-object
-                    const obj = {};
-                    i++;
-                    while (i < lines.length && lines[i].match(/^\s{2,}\w/)) {
-                        const sub = lines[i].match(/^\s+(\w+):\s*(.*)/);
-                        if (sub) obj[sub[1]] = sub[2].trim().replace(/^["']|["']$/g, '');
-                        i++;
-                    }
-                    if (Object.keys(obj).length) items.push(obj);
-                } else {
-                    items.push(itemVal.replace(/^["']|["']$/g, ''));
-                    i++;
-                }
-            }
-            meta[key] = val === '[]' ? [] : items;
-        } else {
-            // scalar
-            const clean = val.replace(/^["']|["']$/g, '');
-            if (clean === 'true') meta[key] = true;
-            else if (clean === 'false') meta[key] = false;
-            else if (!isNaN(clean) && clean !== '') meta[key] = Number(clean);
-            else meta[key] = clean;
-            i++;
-        }
-    }
-
-    const body = raw.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n?/, '').trim();
-    return { meta, body };
-}
+let allProjects = [];
 
 /* ── LABELS ── */
-const catLabels = {
-    powerbi: 'Power BI', saas: 'SaaS', analysis: 'Analysis', excel: 'Excel', other: 'Other'
-};
-const catIcons = {
-    powerbi: '📊', saas: '🏥', analysis: '🔍', excel: '📈', other: '📁'
-};
+const catLabels = { powerbi: 'Power BI', saas: 'SaaS', analysis: 'Analysis', excel: 'Excel', other: 'Other' };
+const catIcons = { powerbi: '📊', saas: '🏥', analysis: '🔍', excel: '📈', other: '📁' };
 
 function statusBadge(s) {
     const map = { live: 'Live', wip: 'In Progress', completed: 'Completed' };
@@ -79,24 +27,26 @@ function statusBadge(s) {
 }
 
 /* ── CARD ── */
-function renderCard(meta, body, index) {
-    const cover = meta.cover && meta.cover !== ''
+function renderCard(meta, index) {
+    const cover = meta.cover
         ? `<img class="project-cover" src="${meta.cover}" alt="${meta.title}" loading="lazy">`
         : `<div class="project-cover-placeholder">${catIcons[meta.category] || '📁'}</div>`;
 
-    const stack = (meta.stack || [])
-        .map((t, i) => `<span class="stack-tag${i < 3 ? ' hl' : ''}">${t}</span>`).join('');
-
     const liveLink = meta.live_url
-        ? `<a class="project-link primary" href="${meta.live_url}" target="_blank" onclick="event.stopPropagation()">🌐 Live</a>` : '';
+        ? `<a class="project-link primary" href="${meta.live_url}" target="_blank" onclick="event.stopPropagation()">🌐 Live</a>`
+        : '';
     const ghLink = meta.github_url
-        ? `<a class="project-link" href="${meta.github_url}" target="_blank" onclick="event.stopPropagation()">GitHub ↗</a>` : '';
+        ? `<a class="project-link" href="${meta.github_url}" target="_blank" onclick="event.stopPropagation()">GitHub ↗</a>`
+        : '';
+
+    const desc = (meta.bodyText || '').trim();
 
     return `
-    <div class="project-card ${meta.featured ? 'featured-card' : ''}"
-         data-category="${meta.category || 'other'}"
-         onclick="openProjectModal(${index})">
-      ${cover}
+  <div class="project-card glass-card ${meta.featured ? 'featured-card' : ''}"
+       data-category="${meta.category || 'other'}"
+       onclick="openProjectModal(${index})">
+    ${cover}
+    <div class="project-info">
       <div class="project-top">
         <span class="project-cat">${catLabels[meta.category] || 'Other'}</span>
         ${statusBadge(meta.status || 'completed')}
@@ -104,85 +54,102 @@ function renderCard(meta, body, index) {
       </div>
       <div class="project-title">${meta.title || 'Untitled'}</div>
       ${meta.tagline ? `<div class="project-tagline">${meta.tagline}</div>` : ''}
-      <div class="project-desc">${(meta.description || body || '').slice(0, 180)}${(meta.description || body || '').length > 180 ? '...' : ''}</div>
-      <div class="project-stack">${stack}</div>
+      <div class="project-desc">${desc.slice(0, 190)}${desc.length > 190 ? '…' : ''}</div>
       <div class="project-links">${liveLink}${ghLink}<span class="project-link">Details →</span></div>
-    </div>`;
+    </div>
+  </div>`;
 }
 
 /* ── MODAL ── */
-function renderModal(meta, body) {
-    const gallery = (meta.gallery || [])
-        .filter(Boolean).map(img => `<img src="${img}" alt="${meta.title}">`).join('');
-    const stack = (meta.stack || [])
-        .map(t => `<span class="stack-tag">${t}</span>`).join('');
-    const files = (meta.files || [])
-        .map(f => `<a class="modal-file-link" href="${f.path}" download>📎 ${f.label}</a>`).join('');
-    const liveLink = meta.live_url
-        ? `<a class="btn-primary" href="${meta.live_url}" target="_blank">🌐 View Live</a>` : '';
-    const resumeLink = meta.resume_file
-        ? `<a class="btn-primary" href="${meta.resume_file}" target="_blank" download>📄 View Resume</a>` : '';
-    const ghLink = meta.github_url
-        ? `<a class="btn-ghost" href="${meta.github_url}" target="_blank">GitHub ↗</a>` : '';
-    const driveLink = meta.google_drive_url
-        ? `<a class="btn-ghost" href="${meta.google_drive_url}" target="_blank">📁 Google Drive ↗</a>` : '';
+function renderModal(meta) {
+    const liveLink = meta.live_url ? `<a class="btn-primary" href="${meta.live_url}" target="_blank">🌐 View Live</a>` : '';
+    const resumeLink = meta.resume_file ? `<a class="btn-primary" href="${meta.resume_file}" target="_blank" download>📄 View Document</a>` : '';
+    const ghLink = meta.github_url ? `<a class="btn-ghost"   href="${meta.github_url}" target="_blank">GitHub ↗</a>` : '';
+    const driveLink = meta.google_drive_url ? `<a class="btn-ghost" href="${meta.google_drive_url}" target="_blank">📁 Drive ↗</a>` : '';
+
+    const cover = meta.cover
+        ? `<img src="${meta.cover}" alt="${meta.title}" style="width:100%;height:220px;object-fit:cover;border-radius:10px;border:1px solid var(--border);margin-bottom:1.5rem;">`
+        : '';
 
     return `
-    ${gallery ? `<div class="modal-gallery">${gallery}</div>` : ''}
-    <div class="project-top" style="margin-bottom:1rem">
-      <span class="project-cat">${catLabels[meta.category] || 'Other'}</span>
-      ${statusBadge(meta.status || 'completed')}
-      ${meta.featured ? '<span class="featured-badge">★ Featured</span>' : ''}
-    </div>
-    <div class="modal-title">${meta.title || 'Untitled'}</div>
-    ${meta.tagline ? `<div class="modal-tagline">${meta.tagline}</div>` : ''}
-    <div class="modal-desc">${meta.description || ''}</div>
-    ${body ? `<div class="modal-desc" style="white-space:pre-line;margin-top:0">${body}</div>` : ''}
-    ${stack ? `<div class="modal-sec">Tech Stack</div><div class="modal-stack">${stack}</div>` : ''}
-    ${files ? `<div class="modal-sec">Downloads</div><div class="modal-files">${files}</div>` : ''}
-    <div class="modal-links">${liveLink}${resumeLink}${ghLink}${driveLink}</div>`;
+  ${cover}
+  <div class="project-top" style="margin-bottom:1rem">
+    <span class="project-cat">${catLabels[meta.category] || 'Other'}</span>
+    ${statusBadge(meta.status || 'completed')}
+    ${meta.featured ? '<span class="featured-badge">★ Featured</span>' : ''}
+  </div>
+  <div class="modal-title">${meta.title || 'Untitled'}</div>
+  ${meta.tagline ? `<div class="modal-tagline">${meta.tagline}</div>` : ''}
+  ${meta.bodyText ? `<div class="modal-desc">${meta.bodyText}</div>` : ''}
+  <div class="modal-links">${liveLink}${resumeLink}${ghLink}${driveLink}</div>`;
 }
 
 /* ── LOAD ── */
-let allProjects = [];
-
 async function loadProjects() {
     const grid = document.getElementById('projectsGrid');
-    let files = [];
+    grid.innerHTML = `<div class="projects-loading mono">Loading projects…</div>`;
+
     try {
-        const res = await fetch('/content/projects/manifest.json');
-        if (res.ok) files = await res.json();
-    } catch (_) { }
+        const res = await fetch(SANITY_URL);
+        const data = await res.json();
+        allProjects = data.result || [];
 
-    if (!files.length) {
-        grid.innerHTML = `<div class="projects-loading">No projects yet — add via <a href="/admin" style="color:var(--accent)">CMS</a>.</div>`;
-        return;
-    }
-
-    const results = await Promise.allSettled(files.map(f => fetch(`/content/projects/${f}`).then(r => r.text())));
-
-    allProjects = results
-        .filter(r => r.status === 'fulfilled')
-        .map(r => parseFrontMatter(r.value))
-        .sort((a, b) => {
-            if (b.meta.featured && !a.meta.featured) return 1;
-            if (a.meta.featured && !b.meta.featured) return -1;
-            return (a.meta.order || 99) - (b.meta.order || 99);
+        // Inject local mockup images
+        allProjects.forEach(p => {
+            const title = (p.title || '').toLowerCase();
+            const cat = p.category || '';
+            if (!p.cover || p.cover === '') {
+                if (title.includes('clinicos') || cat === 'saas') {
+                    p.cover = '/assets/images/projects/clinicos.png';
+                } else if (cat === 'powerbi' || title.includes('dashboard')) {
+                    p.cover = '/assets/images/projects/analytics.png';
+                } else {
+                    p.cover = '/assets/images/projects/abstract.png';
+                }
+            }
         });
 
-    renderProjects('all');
-    if (window.reinitTilt) window.reinitTilt();
+        // Featured first
+        allProjects.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
+
+        renderProjects('all');
+    } catch (err) {
+        console.error('Sanity fetch error:', err);
+        grid.innerHTML = `<div class="projects-loading mono" style="color:#ef4444">Failed to load projects. Please try again.</div>`;
+    }
 }
 
 function renderProjects(filter) {
     const grid = document.getElementById('projectsGrid');
-    const filtered = allProjects.filter(p => filter === 'all' || p.meta.category === filter);
-    grid.innerHTML = filtered.length
-        ? filtered.map(({ meta, body }, i) => renderCard(meta, body, i)).join('')
-        : `<div class="projects-loading">No projects in this category.</div>`;
+    const filtered = filter === 'all'
+        ? allProjects
+        : allProjects.filter(p => p.category === filter);
+
+    if (!filtered.length) {
+        grid.innerHTML = `<div class="projects-loading mono">No projects in this category yet.</div>`;
+        return;
+    }
+
+    grid.innerHTML = filtered.map((meta, i) => renderCard(meta, allProjects.indexOf(meta))).join('');
+
+    // Re-init interactions
     if (window.reinitTilt) window.reinitTilt();
+    if (window.reinitGlow) window.reinitGlow();
+
+    // Re-observe new cards for reveal
+    grid.querySelectorAll('.project-card').forEach((el, i) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(32px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        el.style.transitionDelay = `${i * 0.06}s`;
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+        }));
+    });
 }
 
+/* ── FILTER BUTTONS ── */
 document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -191,9 +158,10 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
     });
 });
 
+/* ── MODAL OPEN ── */
 window.openProjectModal = function (index) {
-    const { meta, body } = allProjects[index];
-    openModal(renderModal(meta, body));
+    openModal(renderModal(allProjects[index]));
 };
 
+// Boot
 loadProjects();
