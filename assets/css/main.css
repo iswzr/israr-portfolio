@@ -1588,9 +1588,6 @@ section {
     transition: transform var(--t), border-color var(--t), box-shadow var(--t);
 }
 
-.project-card.featured-card {
-    /* Removed 1/-1 span so it best fits the image and remains small */
-}
 
 .project-card:hover {
     transform: translateY(-6px);
