@@ -31,10 +31,10 @@ window.addEventListener('load', () => {
         .from('.nav-links a', { opacity: 0, y: -12, stagger: 0.07, duration: 0.5, ease: "power3.out" }, "-=0.3")
         .from('.nav-cta', { opacity: 0, scale: 0.85, duration: 0.5, ease: "back.out(1.7)" }, "-=0.2")
         .from('.hero-eyebrow', { opacity: 0, x: -24, duration: 0.6, ease: "power3.out" }, "-=0.3")
-        .from('.hero-headline .line-1', { opacity: 0, y: 50, duration: 0.7, ease: "power4.out" }, "-=0.4")
-        .from('.hero-headline .line-2', { opacity: 0, y: 50, duration: 0.7, ease: "power4.out" }, "-=0.5")
-        .from('.hero-sub', { opacity: 0, y: 20, duration: 0.6, ease: "power3.out" }, "-=0.3")
-        .from('.hero-ctas', { opacity: 0, y: 16, duration: 0.5, ease: "power3.out" }, "-=0.3")
+        .from('.hero-title .ht-top', { opacity: 0, y: 50, duration: 0.7, ease: "power4.out" }, "-=0.4")
+        .from('.hero-title .ht-main', { opacity: 0, y: 50, duration: 0.7, ease: "power4.out" }, "-=0.5")
+        .from('.hero-desc', { opacity: 0, y: 20, duration: 0.6, ease: "power3.out" }, "-=0.3")
+        .from('.hero-btns', { opacity: 0, y: 16, duration: 0.5, ease: "power3.out" }, "-=0.3")
         .from('#heroCard', { opacity: 0, x: 40, duration: 0.8, ease: "power3.out" }, "-=0.5");
 });
 
@@ -109,9 +109,9 @@ const progressBar = document.createElement('div');
 progressBar.id = 'scrollProgress';
 progressBar.style.cssText = `
     position: fixed; top: 0; left: 0; height: 2px; width: 0%;
-    background: linear-gradient(90deg, #00d4c8, #818cf8);
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
     z-index: 9999; pointer-events: none;
-    box-shadow: 0 0 8px rgba(0,212,200,0.6);
+    box-shadow: 0 0 8px rgba(99, 102, 241, 0.2);
     transition: width 0.1s linear;
 `;
 document.body.appendChild(progressBar);
@@ -130,8 +130,8 @@ if (nav) {
         onUpdate: self => {
             if (self.progress > 0) {
                 nav.style.backdropFilter = 'blur(20px)';
-                nav.style.background = 'rgba(7,8,18,0.85)';
-                nav.style.borderBottom = '1px solid rgba(255,255,255,0.06)';
+                nav.style.background = 'rgba(255, 255, 255, 0.85)';
+                nav.style.borderBottom = '1px solid rgba(0, 0, 0, 0.05)';
                 nav.style.padding = '10px 32px';
             } else {
                 nav.style.backdropFilter = 'blur(0px)';
@@ -147,8 +147,8 @@ if (nav) {
 window.addEventListener('mousemove', e => {
     const xPct = (e.clientX / window.innerWidth - 0.5);
     const yPct = (e.clientY / window.innerHeight - 0.5);
-    gsap.to('.hero-headline', { x: xPct * 12, y: yPct * 8, duration: 0.8, ease: "power2.out" });
-    gsap.to('.hero-sub', { x: xPct * 7, y: yPct * 5, duration: 0.9, ease: "power2.out" });
+    gsap.to('.hero-title', { x: xPct * 12, y: yPct * 8, duration: 0.8, ease: "power2.out" });
+    gsap.to('.hero-desc', { x: xPct * 7, y: yPct * 5, duration: 0.9, ease: "power2.out" });
     gsap.to('#heroCard', { x: xPct * -18, y: yPct * -12, duration: 1, ease: "power2.out" });
     gsap.to('.floating-chips', { x: xPct * 22, y: yPct * 14, duration: 1.1, ease: "power2.out" });
 });
@@ -222,7 +222,7 @@ document.querySelectorAll('a, button, .ht-pill, [data-tilt]').forEach(el => {
     });
     el.addEventListener('mouseleave', () => {
         cursor.style.transform = 'scale(1)';
-        cursor.style.borderColor = 'rgba(255, 255, 255, 0.4)';
+        cursor.style.borderColor = 'rgba(0, 0, 0, 0.15)';
         el.style.boxShadow = '';
     });
 });
@@ -293,7 +293,7 @@ document.querySelectorAll('.skill-card').forEach(card => {
     });
     card.addEventListener('mouseleave', () => {
         gsap.to(card, {
-            boxShadow: '0 0 0 1px rgba(255,255,255,0.08)',
+            boxShadow: '0 0 0 1px rgba(0, 0, 0, 0.05)',
             y: 0,
             duration: 0.5,
             ease: "power3.out"

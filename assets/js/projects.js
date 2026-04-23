@@ -31,9 +31,9 @@ const catIcons = { powerbi: '📊', saas: '🏥', analysis: '🔍', excel: '📈
 
 function statusBadge(s) {
     const styles = {
-        live: 'background:rgba(34,197,94,0.12);color:#22c55e;border:1px solid rgba(34,197,94,0.25);box-shadow:0 0 8px rgba(34,197,94,0.15)',
-        wip: 'background:rgba(251,146,60,0.10);color:#f59e0b;border:1px solid rgba(251,146,60,0.22)',
-        completed: 'background:rgba(99,102,241,0.10);color:#818cf8;border:1px solid rgba(99,102,241,0.22)'
+        live: 'background:rgba(22,163,74,0.08);color:#059669;border:1px solid rgba(22,163,74,0.2);',
+        wip: 'background:rgba(217,119,6,0.06);color:#d97706;border:1px solid rgba(217,119,6,0.18)',
+        completed: 'background:rgba(79,70,229,0.06);color:#4f46e5;border:1px solid rgba(79,70,229,0.18)'
     };
     const labels = { live: '● Live', wip: '◐ In Progress', completed: '✓ Completed' };
     return `<span class="project-status ${s}" style="padding:3px 10px;border-radius:4px;font-size:11px;font-family:var(--mono);letter-spacing:0.08em;${styles[s] || ''}">${labels[s] || s}</span>`;
@@ -43,13 +43,13 @@ function statusBadge(s) {
 function renderCard(meta, index) {
     const cover = meta.cover
         ? `<img class="project-cover" src="${meta.cover}" alt="${meta.title}" loading="lazy" style="transition:transform 0.6s ease;transform:scale(1.05)">`
-        : `<div class="project-cover-placeholder" style="width:100%;height:180px;display:flex;align-items:center;justify-content:center;font-size:48px;background:linear-gradient(135deg,rgba(0,212,200,0.05),rgba(99,102,241,0.05));border-radius:10px;border:1px solid rgba(255,255,255,0.06);margin-bottom:16px">${catIcons[meta.category] || '📁'}</div>`;
+        : `<div class="project-cover-placeholder" style="width:100%;height:180px;display:flex;align-items:center;justify-content:center;font-size:48px;background:linear-gradient(135deg,rgba(0,0,0,0.02),rgba(99,102,241,0.03));border-radius:10px;border:1px solid rgba(0,0,0,0.04);margin-bottom:16px">${catIcons[meta.category] || '📁'}</div>`;
 
     const liveLink = meta.live_url
-        ? `<a class="project-link primary" href="${meta.live_url}" target="_blank" onclick="event.stopPropagation()" style="background:rgba(0,212,200,0.1);color:#00d4c8;border:1px solid rgba(0,212,200,0.25);padding:6px 14px;border-radius:6px;font-size:12px;font-family:var(--mono);text-decoration:none;transition:all 0.2s">🌐 Live</a>`
+        ? `<a class="project-link primary" href="${meta.live_url}" target="_blank" onclick="event.stopPropagation()" style="background:var(--accent2);color:#fff;padding:6px 14px;border-radius:6px;font-size:12px;font-family:var(--mono);text-decoration:none;transition:all 0.2s">🌐 Live</a>`
         : '';
     const ghLink = meta.github_url
-        ? `<a class="project-link" href="${meta.github_url}" target="_blank" onclick="event.stopPropagation()" style="background:transparent;color:#6b7280;border:1px solid rgba(255,255,255,0.1);padding:6px 14px;border-radius:6px;font-size:12px;font-family:var(--mono);text-decoration:none;transition:all 0.2s">GitHub ↗</a>`
+        ? `<a class="project-link" href="${meta.github_url}" target="_blank" onclick="event.stopPropagation()" style="background:transparent;color:var(--text2);border:1px solid rgba(0,0,0,0.1);padding:6px 14px;border-radius:6px;font-size:12px;font-family:var(--mono);text-decoration:none;transition:all 0.2s">GitHub ↗</a>`
         : '';
 
     const desc = (meta.bodyText || '').trim();
@@ -71,7 +71,7 @@ function renderCard(meta, index) {
       <div class="project-top">
         <span class="project-cat">${catLabels[meta.category] || 'Other'}</span>
         ${statusBadge(meta.status || 'completed')}
-        ${meta.featured ? '<span class="featured-badge" style="background:rgba(251,146,60,0.12);color:#f59e0b;border:1px solid rgba(251,146,60,0.25);padding:3px 10px;border-radius:4px;font-size:11px;font-family:var(--mono);letter-spacing:0.1em;box-shadow:0 0 8px rgba(251,146,60,0.15)">★ FEATURED</span>' : ''}
+        ${meta.featured ? '<span class="featured-badge" style="background:rgba(217,119,6,0.08);color:#d97706;border:1px solid rgba(217,119,6,0.2);padding:3px 10px;border-radius:4px;font-size:11px;font-family:var(--mono);letter-spacing:0.1em;">★ FEATURED</span>' : ''}
       </div>
       <div class="project-title">${meta.title || 'Untitled'}</div>
       ${meta.tagline ? `<div class="project-tagline">${meta.tagline}</div>` : ''}
